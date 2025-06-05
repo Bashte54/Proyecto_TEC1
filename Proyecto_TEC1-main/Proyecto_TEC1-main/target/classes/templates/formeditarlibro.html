@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="home :: head">
+  <meta charset="UTF-8">
+  <title>Editar Libro</title>
+</head>
+<body>
+<nav th:replace="home :: navbar"></nav>
+
+<div class="container mt-5">
+  <main class="flex-fill">
+    <form th:action="@{/libros/actualizar}" th:object="${libro}" th:method="post">
+      <input type="hidden" th:field="*{id}">
+
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-md-4">
+          <label class="form-label">Título del libro</label>
+          <input type="text" class="form-control" name="nombre" id="nombre" th:field="*{nombre}">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Autor</label>
+          <input type="text" class="form-control" name="author" id="author" th:field="*{author}">
+        </div>
+        <div class="col-md-4">
+          <label class="form-label">Editorial</label>
+          <input type="text" class="form-control" name="editorial" id="editorial" th:field="*{editorial}">
+        </div>
+      </div>
+
+      <div class="row g-3 align-items-center mb-3">
+        <div class="col-md-3">
+          <label class="form-label">Año de publicación</label>
+          <input type="text" class="form-control" name="annio_publicacion" id="annio_publicacion" th:field="*{annio_publicacion}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">ISBN</label>
+          <input type="text" class="form-control" name="isbn" id="isbn" th:field="*{isbn}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">Género</label>
+          <input type="text" class="form-control" name="genero" id="genero" th:field="*{genero}">
+        </div>
+        <div class="col-md-3">
+          <label class="form-label">URL de imagen</label>
+          <input type="text" class="form-control" name="imagen" id="imagen" th:field="*{imagen}" placeholder="Opcional">
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea class="form-control" name="descripcion" id="descripcion" th:field="*{descripcion}" rows="3"></textarea>
+      </div>
+
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a th:href="@{/libros/catalogo}" class="btn btn-secondary me-md-2">Cancelar</a>
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+      </div>
+    </form>
+
+    <hr>
+    <div class="alert alert-success" role="alert" th:if="${param.exito}">
+      Libro actualizado con éxito
+    </div>
+  </main>
+</div>
+
+<div th:replace="home :: jsincludes"></div>
+</body>
+</html>
