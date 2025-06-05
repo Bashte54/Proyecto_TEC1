@@ -95,8 +95,10 @@
                 <td th:text="${libro.editorial}"></td>
                 <td th:text="${libro.annio_publicacion}"></td>
                 <td>
+                    <a th:href="@{/libros/{id}(id=${libro.id})}"
+                       class="btn btn-sm btn-primary me-1">ver</a>
                     <a th:href="@{/libros/editar/{id}(id=${libro.id})}"
-                       class="btn btn-sm btn-primary me-1">Editar</a>
+                       class="btn btn-sm btn-secondary me-1">Editar</a>
                     <a th:href="@{/libros/eliminar/{id}(id=${libro.id})}"
                        class="btn btn-sm btn-danger"
                        onclick="return confirm('¿Eliminar este libro?')">Eliminar</a>

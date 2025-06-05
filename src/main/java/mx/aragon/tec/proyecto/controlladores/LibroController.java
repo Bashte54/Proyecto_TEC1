@@ -6,10 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,6 +43,26 @@ public class LibroController {
         return "LibrosGuardados";
     }
 
+    @GetMapping("/eliminar/{id}")
+    public String eliminarLibro(@PathVariable Integer id) {
+        libroService.eliminarLibro(id);
+        return "redirect:/libros/catalogo";
+    }
 
+    @GetMapping("/editar/{id}")
+    public String mostrarFormularioEdicion(@PathVariable Integer id, Model model) {
+        Libro libro = libroService.buscarLibroById(id);
+        if (libro == null) {
+            return "redirect:/libros/catalogo";
+        }
+        model.addAttribute("libro", libro);
+        return "formeditarlibro"; // Nuevo template para edición
+    }
+
+    @PostMapping("/actualizar")
+    public String actualizarLibro(@ModelAttribute Libro libro) {
+        libroService.actualizarLibro(libro);
+        return "redirect:/libros/catalogo";
+    }
 
 }

@@ -25,4 +25,22 @@ public class LibroService {
     public List<Libro> obtenerTodosLibros() {
         return libroRepository.findAll();
     }
+
+    public boolean eliminarLibro(Integer id) {
+        try {
+            libroRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean actualizarLibro(Libro libro) {
+        if (libroRepository.existsById(libro.getId())) {
+            libroRepository.save(libro);
+            return true;
+        }
+        return false;
+    }
+
 }
