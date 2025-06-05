@@ -24,7 +24,9 @@ public class Libro {
     private String isbn;
     @Column (name = "descripcion_libro",nullable = true, length = 500)
     private String descripcion;
-    @Column (name = "url_foto",nullable = true, insertable = false,columnDefinition = "VARCHAR(500) DEFAULT 'https://cdn1.iconfinder.com/data/icons/image-manipulations/100/13-512.png'")
+    //@Column (name = "url_foto",nullable = true, insertable = false,columnDefinition = "VARCHAR(500) DEFAULT 'https://cdn1.iconfinder.com/data/icons/image-manipulations/100/13-512.png'")
+    //private String imagen;
+    @Column(name = "url_foto", nullable = true, columnDefinition = "VARCHAR(500) DEFAULT 'https://cdn1.iconfinder.com/data/icons/image-manipulations/100/13-512.png'")
     private String imagen;
     @Column (name = "genero_libro",nullable = true, length = 500)
     private String genero;

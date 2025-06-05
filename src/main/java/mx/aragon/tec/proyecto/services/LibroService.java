@@ -5,6 +5,8 @@ import mx.aragon.tec.proyecto.repositorios.LibroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class LibroService {
 
@@ -17,6 +19,10 @@ public class LibroService {
     }
 
     public Libro buscarLibroById(Integer id) {
-        return libroRepository.getById(id);
+        return libroRepository.findById(id).orElse(null);
+    }
+
+    public List<Libro> obtenerTodosLibros() {
+        return libroRepository.findAll();
     }
 }

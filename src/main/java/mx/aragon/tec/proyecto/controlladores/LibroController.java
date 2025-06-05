@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/libros")
 public class LibroController {
@@ -35,6 +37,13 @@ public class LibroController {
         LoggerFactory.getLogger(getClass()).info("Guardando libro: " + libro);
         libroService.guardarLibro(libro);
         return "redirect:/libros/nuevo?exito";
+    }
+
+    @GetMapping("/catalogo")
+    public String listarLibros(Model model) {
+        List<Libro> libros = libroService.obtenerTodosLibros();
+        model.addAttribute("libros", libros);
+        return "LibrosGuardados";
     }
 
 
