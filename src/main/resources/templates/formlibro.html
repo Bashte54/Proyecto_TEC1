@@ -2,64 +2,64 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="home :: head">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Nuevo Libro</title>
 </head>
 <body>
 <nav th:replace="home :: navbar"></nav>
 
 <div class="container mt-5">
     <main class="flex-fill">
-        <form th:action="@{/libro/guardar}" th:object="${pelicula}" th:method="post">
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label class="col-form-label">Titulo</label>
+        <form th:action="@{/libros/guardar}" th:object="${libro}" th:method="post">
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-4">
+                    <label class="form-label">Título del libro</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" th:field="*{nombre}">
                 </div>
-                <div class="col-auto">
-                    <input type="text" name="titulo" id="titulo" th:field="*{nombre}">
+                <div class="col-md-4">
+                    <label class="form-label">Autor</label>
+                    <input type="text" class="form-control" name="author" id="author" th:field="*{author}">
                 </div>
-                <div class="col-auto">
-                    <label class="col-form-label">Director</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" name="director" id="director" th:field="*{director}">
-                </div>
-                <div class="col-auto">
-                    <label class="col-form-label">Año de salida</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" name="annioSalida" id="annioSalida" th:field="*{annioSalida}">
-                </div>
-                <div class="col-auto">
-                    <label class="col-form-label">Genero</label>
-                </div>
-                <div class="col-auto">
-                    <input type="text" name="genero" id="genero" th:field="*{genero}">
+                <div class="col-md-4">
+                    <label class="form-label">Editorial</label>
+                    <input type="text" class="form-control" name="editorial" id="editorial" th:field="*{editorial}">
                 </div>
             </div>
-            <div class="row g-3 align-items-center">
-                <div class="col-auto">
-                    <label class="col-form-label">Imagen URL</label>
+
+            <div class="row g-3 align-items-center mb-3">
+                <div class="col-md-3">
+                    <label class="form-label">Año de publicación</label>
+                    <input type="text" class="form-control" name="annio_publicacion" id="annio_publicacion" th:field="*{annio_publicacion}">
                 </div>
-                <div class="col-auto">
-                    <input type="text" name="imagen" id="imagen" th:field="*{imagen}">
+                <div class="col-md-3">
+                    <label class="form-label">ISBN</label>
+                    <input type="text" class="form-control" name="isbn" id="isbn" th:field="*{isbn}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Género</label>
+                    <input type="text" class="form-control" name="genero" id="genero" th:field="*{genero}">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">URL de imagen</label>
+                    <input type="text" class="form-control" name="imagen" id="imagen" th:field="*{imagen}" placeholder="Opcional">
                 </div>
             </div>
+
             <div class="mb-3">
-                <label class="form-label">Descripcion</label>
-                <input type="text" class="form-control" name="descripcion" id="descripcion" th:field="*{descripcion}">
+                <label class="form-label">Descripción</label>
+                <textarea class="form-control" name="descripcion" id="descripcion" th:field="*{descripcion}" rows="3"></textarea>
             </div>
-            <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Guardar</button>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button type="submit" class="btn btn-primary">Guardar Libro</button>
             </div>
         </form>
 
         <hr>
-        <div class="alert alert-success" role="alert"  th:if="${param.exito}">
-            Pelicula guardada con exito
+        <div class="alert alert-success" role="alert" th:if="${param.exito}">
+            Libro guardado con éxito
         </div>
     </main>
 </div>
-
 
 <div th:replace="home :: jsincludes"></div>
 </body>
