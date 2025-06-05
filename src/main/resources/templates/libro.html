@@ -2,12 +2,126 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org/">
 <head th:replace="home :: head">
     <meta charset="UTF-8">
-    <title>Libro</title>
+    <title>Detalles del Libro</title>
+    <style>
+        .book-detail-container {
+            margin-top: 30px;
+        }
+
+        .book-title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .book-content {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .book-image-container {
+            flex: 0 0 250px;
+        }
+
+        .book-image-wrapper {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .book-image {
+            max-width: 250px;
+            max-height: 300px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .book-info {
+            flex: 1;
+        }
+
+        .book-info-item {
+            margin-bottom: 15px;
+        }
+
+        .book-info-label {
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+        }
+
+        .book-description {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .btn-back {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
 <nav th:replace="home :: navbar"></nav>
 
-    <h1></h1>
+<div class="container book-detail-container">
+    <h1 class="book-title" th:text="${libro.nombre}"></h1>
+
+    <div class="book-content">
+        <div class="book-image-container">
+            <div class="book-image-wrapper">
+                <img th:src="${libro.imagen}"
+                     alt="Portada del libro"
+                     class="book-image img-thumbnail"
+                     onerror="this.src='https://cdn1.iconfinder.com/data/icons/image-manipulations/100/13-512.png'">
+            </div>
+        </div>
+
+        <div class="book-info">
+            <div class="book-info-item">
+                <span class="book-info-label">Autor:</span>
+                <span th:text="${libro.author}"></span>
+            </div>
+
+            <div class="book-info-item">
+                <span class="book-info-label">Editorial:</span>
+                <span th:text="${libro.editorial}"></span>
+            </div>
+
+            <div class="book-info-item">
+                <span class="book-info-label">Año:</span>
+                <span th:text="${libro.annio_publicacion}"></span>
+            </div>
+
+            <div class="book-info-item">
+                <span class="book-info-label">ISBN:</span>
+                <span th:text="${libro.isbn}"></span>
+            </div>
+
+            <div class="book-info-item">
+                <span class="book-info-label">Género:</span>
+                <span th:text="${libro.genero}"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="book-description">
+        <h4>Descripción</h4>
+        <p th:text="${libro.descripcion} ?: 'No hay descripción disponible'"></p>
+    </div>
+
+    <a th:href="@{/libros/catalogo}" class="btn btn-secondary btn-back">Volver al catálogo</a>
+</div>
 
 <div th:replace="home :: jsincludes"></div>
 </body>

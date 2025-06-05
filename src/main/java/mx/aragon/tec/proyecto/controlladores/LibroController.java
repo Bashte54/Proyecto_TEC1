@@ -65,4 +65,14 @@ public class LibroController {
         return "redirect:/libros/catalogo";
     }
 
+    @GetMapping("/{id}")
+    public String verDetallesLibro(@PathVariable Integer id, Model model) {
+        Libro libro = libroService.buscarLibroById(id);
+        if (libro == null) {
+            return "redirect:/libros/catalogo";
+        }
+        model.addAttribute("libro", libro);
+        return "LibroPrueba";
+    }
+
 }
