@@ -72,7 +72,7 @@ public class LibroController {
             return "redirect:/libros/catalogo";
         }
         model.addAttribute("libro", libro);
-        return "LibroPrueba";
+        return "libro";
     }
 
 }
